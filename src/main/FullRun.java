@@ -51,7 +51,8 @@ public class FullRun {
 			{
 				RAECost = new RAECost(params.AlphaCat,params.CatSize,params.Beta,params.DictionarySize,
 						params.hiddenSize,params.visibleSize, params.Lambda,InitialTheta.We,trainingData,null,f);
-				Minimizer<DifferentiableFunction> minFunc = new QNMinimizer(10, params.MaxIterations);	
+				Minimizer<DifferentiableFunction> minFunc = new QNMinimizer(10, params.MaxIterations);
+	
 				double[] minTheta = minFunc.minimize(RAECost, 1e-6, InitialTheta.Theta, params.MaxIterations);
 				tunedTheta = new FineTunableTheta(minTheta, params.hiddenSize, 
 												params.visibleSize, params.CatSize, params.DictionarySize);
@@ -72,7 +73,7 @@ public class FullRun {
 			
 			// Important step
 			tunedTheta.setWe(tunedTheta.We.add(InitialTheta.We));
-			tunedTheta.Dump(params.dir + "/" + params.ModelFile + params.AlphaCat + "." + params.Beta + ".rae");
+			tunedTheta.Dump(params.ModelFile + params.AlphaCat + "." + params.Beta + ".rae");
 			
 			System.out.println("Extracting features ...");
 	
